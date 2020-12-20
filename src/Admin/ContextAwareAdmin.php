@@ -37,7 +37,7 @@ abstract class ContextAwareAdmin extends AbstractAdmin
         $this->contextManager = $contextManager;
     }
 
-    public function getNewInstance()
+    public function getNewInstance(): object
     {
         $instance = parent::getNewInstance();
 
@@ -60,7 +60,7 @@ abstract class ContextAwareAdmin extends AbstractAdmin
         return $instance;
     }
 
-    public function getPersistentParameters()
+    public function getPersistentParameters(): array
     {
         $parameters = array_merge(
             parent::getPersistentParameters(),
