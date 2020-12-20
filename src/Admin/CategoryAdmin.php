@@ -16,7 +16,7 @@ namespace Sonata\ClassificationBundle\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\ClassificationBundle\Form\Type\CategorySelectorType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -33,7 +33,7 @@ class CategoryAdmin extends ContextAwareAdmin
         'cascade_validation' => true,
     ];
 
-    public function configureRoutes(RouteCollection $routes): void
+    public function configureRoutes(RouteCollectionInterface $routes): void
     {
         $routes->add('tree', 'tree');
     }
