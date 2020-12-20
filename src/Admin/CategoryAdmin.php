@@ -21,6 +21,7 @@ use Sonata\ClassificationBundle\Form\Type\CategorySelectorType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Valid;
 
 class CategoryAdmin extends ContextAwareAdmin
@@ -37,7 +38,7 @@ class CategoryAdmin extends ContextAwareAdmin
         $routes->add('tree', 'tree');
     }
 
-    public function getFormBuilder()
+    public function getFormBuilder(): FormBuilderInterface
     {
         // NEXT_MAJOR: set constraints unconditionally
         if (isset($this->formOptions['cascade_validation'])) {
