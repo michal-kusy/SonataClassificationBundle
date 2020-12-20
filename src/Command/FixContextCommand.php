@@ -13,13 +13,34 @@ declare(strict_types=1);
 
 namespace Sonata\ClassificationBundle\Command;
 
+use Sonata\ClassificationBundle\Model\CategoryManagerInterface;
+use Sonata\ClassificationBundle\Model\CollectionManagerInterface;
 use Sonata\ClassificationBundle\Model\ContextInterface;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Sonata\ClassificationBundle\Model\ContextManagerInterface;
+use Sonata\ClassificationBundle\Model\TagManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class FixContextCommand extends ContainerAwareCommand
+class FixContextCommand extends Command
 {
+    private $categoryManager;
+    private $tagManager;
+    private $collectionManager;
+    private $contextManager;
+
+    public function __construct(CategoryManagerInterface $categoryManager,
+                                TagManagerInterface  $tagManager,
+                                CollectionManagerInterface $collectionManager,
+                                ContextManagerInterface $contextManager)
+    {
+        $this->categoryManager = $categoryManager;
+        $this->tagManager = $tagManager;
+        $this->collectionManager = $collectionManager;
+        $this->contextManager = $contextManager;
+    }
+
+
     public function configure(): void
     {
         $this->setName('sonata:classification:fix-context');
@@ -28,10 +49,10 @@ class FixContextCommand extends ContainerAwareCommand
 
     public function execute(InputInterface $input, OutputInterface $output): void
     {
-        $contextManager = $this->getContainer()->get('sonata.classification.manager.context');
-        $tagManager = $this->getContainer()->get('sonata.classification.manager.tag');
-        $collectionManager = $this->getContainer()->get('sonata.classification.manager.collection');
-        $categoryManager = $this->getContainer()->get('sonata.classification.manager.category');
+        $contextManager = $this->contextManager;
+        $tagManager = $this->tagManager;
+        $collectionManager = $this->collectionManager;
+        $categoryManager = $this->categoryManager;
 
         $output->writeln('1. Checking default context');
 
