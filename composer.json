@@ -42,7 +42,7 @@
         "jms/serializer": "<0.13",
         "nelmio/api-doc-bundle": "<2.13 || >=4.0",
         "sonata-project/admin-bundle": "<3.68",
-        "sonata-project/block-bundle": "<3.19 || >=4.0",
+        "sonata-project/block-bundle": "<3.19",
         "sonata-project/core-bundle": "<3.20",
         "sonata-project/doctrine-orm-admin-bundle": "<3.16"
     },
